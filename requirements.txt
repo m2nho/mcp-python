@@ -1,0 +1,6 @@
+streamlit
+mcp
+langchain
+langchain-mcp-adapters
+langchain-aws
+boto3
