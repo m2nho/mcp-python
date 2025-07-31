@@ -283,6 +283,8 @@ async def invoke_doc_agent(user_input: str):
     logger.info(f"Doc final response preview: {current_response.content[:200]}...")
     return current_response.content
 
+
+
 def run_async_agent(user_input: str, agent_type: str):
     """비동기 에이전트를 동기적으로 실행"""
     try:
@@ -351,6 +353,8 @@ with tab2:
                     st.error(error_msg)
                     st.session_state.doc_messages.append({"role": "assistant", "content": error_msg})
 
+
+
 # 사이드바에 설정 옵션
 with st.sidebar:
     st.header("⚙️ 설정")
@@ -373,13 +377,17 @@ with st.sidebar:
         st.session_state.doc_messages = []
         st.rerun()
     
+    if st.button("대화 기록 초기화 (파일시스템)"):
+        st.session_state.fs_messages = []
+        st.rerun()
+    
     st.markdown("---")
     st.markdown("### 📋 정보")
     st.markdown("- **MCP 프로토콜**: 표준 MCP 사용")
-    st.markdown("- **MCP 서버**: AWS API + Documentation (탭별 분리)")
+    st.markdown("- **MCP 서버**: AWS API + Documentation + Filesystem")
     st.markdown("- **모델**: Claude 3.5 Sonnet")
     st.markdown("- **리전**: ap-northeast-2")
-    st.markdown("- **기능**: AWS CLI 명령어 실행 + 문서 검색")
+    st.markdown("- **기능**: AWS CLI + 문서 검색 + 파일 관리")
     
     st.markdown("---")
     st.markdown("### 💡 CLI 사용 예시")
@@ -391,3 +399,4 @@ with st.sidebar:
     st.markdown("- 'S3 버킷 생성 방법 문서 찾아줘'")
     st.markdown("- 'Lambda 함수 배포 가이드 검색해줘'")
     st.markdown("- 'EC2 인스턴스 타입 비교 문서 보여줘'")
+    
